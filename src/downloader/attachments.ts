@@ -1,4 +1,4 @@
-import type { APIAttachment, APIMessage, Awaitable } from 'discord.js';
+import type { Attachment, Awaitable, Message } from 'discord.js';
 
 /**
  * Callback used to save an attachment.
@@ -9,6 +9,6 @@ import type { APIAttachment, APIMessage, Awaitable } from 'discord.js';
  * `string` indicates to use the returned URL as the attachment URL (base64 or remote image).
  */
 export type ResolveAttachmentCallback = (
-  attachment: APIAttachment,
-  message: APIMessage
+  attachment: Attachment,
+  message: Message
 ) => Awaitable<string | null | undefined>;

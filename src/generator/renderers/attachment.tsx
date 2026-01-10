@@ -1,4 +1,4 @@
-import type { APIAttachment, APIMessage, Attachment as AttachmentType, Message } from 'discord.js';
+import type { Attachment as AttachmentType, Message } from 'discord.js';
 import type { RenderMessageContext } from '..';
 import { AttachmentTypes } from '../../types';
 import { formatBytes } from '../../utils/utils';
@@ -32,8 +32,8 @@ export async function Attachment({
   message: Message;
 }) {
   const url = await context.callbacks.resolveAttachmentSrc(
-    attachment.toJSON() as APIAttachment,
-    message.toJSON() as APIMessage
+    attachment,
+    message
   ) ?? attachment.url;
 
   const attachmentType = getAttachmentType(attachment);
