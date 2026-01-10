@@ -31,22 +31,17 @@ export async function Attachment({
   context: RenderMessageContext;
   message: Message;
 }) {
-  let url = attachment.url;
+  const url = await context.callbacks.resolveAttachmentSrc(
+    attachment.toJSON() as APIAttachment,
+    message.toJSON() as APIMessage
+  ) ?? attachment.url;
+
   const attachmentType = getAttachmentType(attachment);
   const [bytes, bytesUnit] = formatBytes(attachment.size);
 
   // if the attachment is an image, download it to a data url
   switch (attachmentType) {
     case AttachmentTypes.Image: {
-      const downloaded = await context.callbacks.resolveAttachmentSrc(
-        attachment.toJSON() as APIAttachment,
-        message.toJSON() as APIMessage
-      );
-
-      if (downloaded !== null) {
-        url = downloaded ?? url;
-      }
-
       return <DiscordImageAttachment url={url} alt={attachment.name} key={attachment.id} />;
     }
 
