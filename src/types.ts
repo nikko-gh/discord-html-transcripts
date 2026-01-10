@@ -28,12 +28,6 @@ export type GenerateFromMessagesOptions<T extends ExportReturnType> = Partial<{
   returnType: T;
 
   /**
-   * Downloads images and encodes them as base64 data urls
-   * @default false
-   */
-  saveImages: boolean;
-
-  /**
    * Callbacks for resolving channels, users, and roles
    */
   callbacks: Partial<RenderMessageContext['callbacks']>;

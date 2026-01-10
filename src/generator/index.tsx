@@ -6,7 +6,7 @@ import { readFileSync } from 'fs';
 import path from 'path';
 import { render as renderLit } from '@lit-labs/ssr';
 import DiscordMessages from './transcript';
-import type { ResolveImageCallback } from '../downloader/images';
+import type { ResolveAttachmentCallback } from '../downloader/attachments';
 import { streamToString } from '../utils/utils';
 import { collectResult } from '@lit-labs/ssr/lib/render-result';
 import { globalStyles } from './renderers/components/styles';
@@ -28,7 +28,7 @@ export type RenderMessageContext = {
   channel: Channel;
 
   callbacks: {
-    resolveImageSrc: ResolveImageCallback;
+    resolveAttachmentSrc: ResolveAttachmentCallback;
     resolveChannel: (channelId: string) => Awaitable<Channel | null>;
     resolveUser: (userId: string) => Awaitable<User | null>;
     resolveRole: (roleId: string) => Awaitable<Role | null>;
@@ -36,7 +36,6 @@ export type RenderMessageContext = {
 
   poweredBy?: boolean;
   footerText?: string;
-  saveImages: boolean;
   favicon: 'guild' | string;
   hydrate: boolean;
 };

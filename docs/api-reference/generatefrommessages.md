@@ -87,7 +87,6 @@ An object with the discord-html-transcripts configuration options.
 const attachment = await discordTranscripts.createTranscript(channel, {
     returnType: 'attachment', // Valid options: 'buffer' | 'string' | 'attachment' Default: 'attachment' OR use the enum ExportReturnType
     filename: 'transcript.html', // Only valid with returnType is 'attachment'. Name of attachment.
-    saveImages: false, // Download all images and include the image data in the HTML (allows viewing the image even after it has been deleted) (! WILL INCREASE FILE SIZE !)
     footerText: "Exported {number} message{s}", // Change text at footer, don't forget to put {number} to show how much messages got exported, and {s} for plural
     callbacks: {
       // register custom callbacks for the following:
@@ -117,14 +116,6 @@ The default value is `attachment`
 The name of the output file when the return type is `attachment`
 
 The default value is `transcript-{channel id}.html`
-
-#### `options.saveImages: boolean`
-
-Enabling this option will make Discord HTML Transcripts download all image attachments. This is useful in use cases where the channel will be deleted which will wipe all images off of Discord's CDN, which will break images that aren't downloaded.
-
-**If you are uploading the transcript to discord,** enabling this option may cause issues. Your bot may hit the upload filesize limit since images take up a lot of space!&#x20;
-
-The default value is `false`
 
 #### `options.footerText: string`
 

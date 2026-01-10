@@ -38,7 +38,7 @@ export async function Attachment({
   // if the attachment is an image, download it to a data url
   switch (attachmentType) {
     case AttachmentTypes.Image: {
-      const downloaded = await context.callbacks.resolveImageSrc(
+      const downloaded = await context.callbacks.resolveAttachmentSrc(
         attachment.toJSON() as APIAttachment,
         message.toJSON() as APIMessage
       );

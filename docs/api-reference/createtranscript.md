@@ -22,7 +22,6 @@ client.on('messageCreate', async (message) => {
             {
                 // options go here
                 // for example
-                saveImages: true,
                 footerText: "Saved {number} message{s}"
             }
         );
@@ -57,7 +56,6 @@ client.on('messageCreate', async (message) => {
             {
                 // options go here
                 // for example
-                saveImages: true,
                 footerText: "Saved {number} message{s}"
             }
         );
