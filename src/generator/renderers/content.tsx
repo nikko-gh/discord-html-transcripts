@@ -215,10 +215,15 @@ export async function MessageSingleASTNode({ node, context }: { node: SingleASTN
         />
       );
 
-    case 'timestamp':
+    case 'timestamp': {
       // TODO: Make this reactive
       // https://github.com/ItzDerock/discord-components/blob/main/packages/core/src/components/discord-time/discord-time.tsx
-      return <discord-time>{new Date(node.timestamp).toISOString()}</discord-time>;
+      // The parser gives Unix seconds as a string. toISOString throws on a date it can't hold, which would stop the
+      // whole transcript, so such a timestamp is shown as it was written.
+      const date = new Date(parseInt(node.timestamp, 10) * 1000);
+      if (Number.isNaN(date.getTime())) return `<t:${node.timestamp}${node.format ? `:${node.format}` : ''}>`;
+      return <discord-time>{date.toISOString()}</discord-time>;
+    }
     // return <DiscordTime timestamp={parseInt(node.timestamp) * 1000} format={node.format} />;
 
     default: {
